@@ -4,7 +4,7 @@ module Perjantai
   class EventNode
     attr_reader :timestamp, :data, :prev
 
-    def initialize(timestamp: Date.now.strftime('%Q'), data:, prev:, hash: nil)
+    def initialize(timestamp: Time.now.strftime('%Q'), data:, prev:, hash: nil)
       @timestamp = timestamp
       @data = (data || {}).symbolize_keys
       @prev = prev
