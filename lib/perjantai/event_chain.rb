@@ -4,14 +4,14 @@ module Perjantai
   class EventNode
     attr_reader :timestamp, :data, :prev
 
-    def initialize(timestamp: DateTime.now.strftime('%Q'), data:, prev:, hash: nil)
+    def initialize(timestamp: Date.now.strftime('%Q'), data:, prev:, hash: nil)
       @timestamp = timestamp
       @data = (data || {}).symbolize_keys
       @prev = prev
 
-      if hash.present?
-        raise 'Invalid entry' if self.hash != hash
-      end
+      return if hash.blank? || self.hash == hash
+
+      raise 'Invalid entry'
     end
 
     def hash
